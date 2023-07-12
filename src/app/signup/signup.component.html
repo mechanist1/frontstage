@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Signup</title>
+</head>
+<body>
+<h1>{{ email }}</h1>
+
+<div class="container">
+  <div class="form-container" id="login-form">
+    <h1>Sign up</h1>
+    <form>
+      <label >Email</label>
+      <input type="text"  [(ngModel)]="email" required>
+      <label >Username</label>
+      <input type="text" [(ngModel)]="username" required>
+      <label>Password</label>
+      <input type="password" [(ngModel)]="password" required>
+      <button type="submit">Create account</button>
+    </form>
+
+    <p>Already a member? <a routerLink="/login">Sign in</a></p>
+  </div>
+
+</div>
+</body>
+</html>
