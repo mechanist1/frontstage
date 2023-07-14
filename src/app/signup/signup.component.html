@@ -8,22 +8,24 @@
   <title>Signup</title>
 </head>
 <body>
-<h1>{{ email }}</h1>
+
 
 <div class="container">
   <div class="form-container" id="login-form">
     <h1>Sign up</h1>
     <form>
-      <label >Email</label>
-      <input type="text"  [(ngModel)]="email" required>
-      <label >Username</label>
-      <input type="text" [(ngModel)]="username" required>
+      <label>Email</label>
+      <input type="text" name="email" [(ngModel)]="email" required>
+      <label>Username</label>
+      <input type="text" name="username" [(ngModel)]="username" required>
       <label>Password</label>
-      <input type="password" [(ngModel)]="password" required>
-      <button type="submit">Create account</button>
+      <input type="password" name="password" [(ngModel)]="password" required>
+      <button type="submit" (click)="signup()">Create account</button>
+
     </form>
 
-    <p>Already a member? <a routerLink="/login">Sign in</a></p>
+
+    <p>Already a member? <a routerLink="/login" >Sign in</a></p>
   </div>
 
 </div>

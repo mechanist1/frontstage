@@ -7,13 +7,33 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
 
-email:String="";
-username:String="";
-password:String="";
+email: String="";
+username: String="";
+password:  String="";
 
 constructor(private router: Router, private http: HttpClient) { }
-ngOnInit(){};
+ngOnInit(){
+console.log(this.email)};
+
+signup():void{
+const data={
+email:this.email,
+username:this.username,
+password:this.password,}
+ this.http.post('http://localhost:8080/signup',data, { responseType: 'text' })
+      .subscribe(
+        response => {
+
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
 
 }
+
+

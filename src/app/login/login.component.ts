@@ -9,8 +9,35 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient) { }
+email: String="";
 
+password:  String="";
+
+constructor(private router: Router, private http: HttpClient) { }
 ngOnInit(){};
 
+ signin(): void {
+    const data2 = {
+      password: this.password,
+      email: this.email,
+    }
+
+    this.http.post('http://localhost:8080/signin', data2, { responseType: 'text' })
+      .subscribe(
+        response => {
+          if (response != "Invalid credentials") {
+            localStorage.setItem('token', response);
+            console.log("User authenticated successfully");
+            console.log("the token received is : ", response);
+
+            this.router.navigateByUrl('/');
+          } else {
+            console.log(response);
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
 }
