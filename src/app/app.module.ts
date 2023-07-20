@@ -6,20 +6,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { HomeComponent } from './home/home.component';
+
+// Import the ChartsModule from 'ng2-charts'
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    HomeComponent
   ],
   imports: [
-       BrowserModule,
-       AppRoutingModule,
-       FormsModule,
-       ReactiveFormsModule,
-       HttpClientModule,
-     ],
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgChartsModule // Add ChartsModule here
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
