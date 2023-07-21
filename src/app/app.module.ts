@@ -10,13 +10,15 @@ import { HomeComponent } from './home/home.component';
 
 // Import the ChartsModule from 'ng2-charts'
 import { NgChartsModule } from 'ng2-charts';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent
+    HomeComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

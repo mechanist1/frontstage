@@ -27,6 +27,7 @@ password:this.password,}
         response => {
 
           console.log(response);
+          this.router.navigate(['/login']);
         },
         error => {
           console.log(error);

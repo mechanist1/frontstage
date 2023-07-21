@@ -30,6 +30,7 @@ ngOnInit(){};
             console.log("User authenticated successfully");
             console.log("the token received is : ", response);
 
+
             this.router.navigateByUrl('/');
           } else {
             console.log(response);

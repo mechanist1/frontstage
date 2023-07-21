@@ -1,4 +1,65 @@
-<h1>this is a simple test for showing charts</h1>
-<div class="chart-container">
-  <canvas id="barChart"></canvas>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Chart</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="page-wrapper">
+  <h1 class="display-3" align="center">Temperature Chart</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-primary">Data 1</button>
+          <button type="button" class="btn btn-secondary">Data 2</button>
+          <!-- Add more buttons as needed -->
+        </div>
+      </div>
+      <div class="col">
+        <div class="logout" style="text-align: right;">
+          <button class="btn btn-danger" onclick="logout()">LogOut</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-lg-6">
+        <h3 class="text-center">Temperature Chart 1</h3>
+        <div class="chart-container">
+          <canvas id="chart1"></canvas>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h3 class="text-center">Temperature Chart 2</h3>
+        <div class="chart-container">
+          <canvas id="chart2"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-lg-12">
+        <h3 class="text-center">Temperature Chart 3</h3>
+        <div class="chart-container">
+          <canvas id="chart3"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Your JavaScript code for creating the charts -->
+<script src="your_script.js"></script>
+</body>
+
+</html>
