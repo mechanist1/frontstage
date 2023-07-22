@@ -1,95 +1,101 @@
-import { Component,OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Chart } from 'chart.js';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  chart1: any;
-  chart2: any;
-  chart3: any;
- constructor(private http:HttpClient,private router:Router){};
-
-
+  chartTemp: any;
+  chartMotion: any;
+  chartHumidity: any;
+ currentdate: string="";
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    // Sample data for demonstration purposes
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June'];
-    const chartData1 = [25, 35, 20, 45, 30, 60];
-    const chartData2 = [30, 40, 35, 50, 28, 55];
-    const chartData3 = [22, 28, 25, 30, 18, 34];
+    this.fetchChartData();
+    this.currentdate = new Date().toLocaleDateString();
+  }
 
-    const options = {
-      scales: {
-        y: {
-          beginAtZero: true,
+  fetchChartData() {
+    this.http.get<any[]>('http://localhost:8080/') // Replace with the correct API endpoint
+      .subscribe(
+        (data) => {
+          const labels = data.map(item => item.date);
+          const chartDataTemp = data.map(item => item.temp);
+          const chartDataMotion = data.map(item => item.motion);
+          const chartDataHumidity = data.map(item => item.hum);
+
+          const options = {
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          };
+
+          // Create the temperature chart
+          this.chartTemp = new Chart('chartTemp', {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: 'Temperature (°C)',
+                  data: chartDataTemp,
+                  borderColor: 'rgba(255, 99, 132, 1)',
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: options,
+          });
+
+          // Create the motion chart
+          this.chartMotion = new Chart('chartMotion', {
+            type: 'bar',
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: 'Motion',
+                  data: chartDataMotion,
+                  borderColor: 'rgba(54, 162, 235, 1)',
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: options,
+          });
+
+          // Create the humidity chart
+          this.chartHumidity = new Chart('chartHumidity', {
+            type: 'line',
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: 'Humidity (%)',
+                  data: chartDataHumidity,
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: options,
+          });
         },
-      },
-    };
-
-    // Create the bar charts
-    this.chart1 = new Chart('chart1', {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Temperature Data 1',
-            data: chartData1,
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: options,
-    });
-
-    this.chart2 = new Chart('chart2', {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Temperature Data 2',
-            data: chartData2,
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: options,
-    });
-
-    this.chart3 = new Chart('chart3', {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Temperature Data 3',
-            data: chartData3,
-            backgroundColor: 'rgba(75, 192, 192, 0.5)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: options,
-    });
+        (error) => {
+          console.error('Error fetching data:', error);
+        }
+      );
   }
 
-  logout():void{
-
-  localStorage.removeItem("token");
-  this.router.navigate(['/login'])
-
-
+  logout(): void {
+    localStorage.removeItem('token');
+     this.router.navigate(['/login']);
   }
-
 }

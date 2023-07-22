@@ -9,57 +9,59 @@
 </head>
 
 <body>
-
-<div class="page-wrapper">
+<div class="container-fluid bg-dark text-light p-4"></div>
+<div class="container mt-4">
   <h1 class="display-3" align="center">Temperature Chart</h1>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-primary">Data 1</button>
-          <button type="button" class="btn btn-secondary">Data 2</button>
-          <!-- Add more buttons as needed -->
-        </div>
-      </div>
-      <div class="col">
-        <div class="logout" style="text-align: right;">
-          <button class="btn btn-danger" onclick="logout()">LogOut</button>
-        </div>
+  <div class="row">
+    <div class="col">
+      <div class="logout" style="text-align: right;">
+        <button class="btn btn-secondary" (click)="logout()">LogOut</button>
       </div>
     </div>
   </div>
-
-  <div class="container mt-4">
-    <div class="row">
-      <div class="col-lg-6">
-        <h3 class="text-center">Temperature Chart 1</h3>
-        <div class="chart-container">
-          <canvas id="chart1"></canvas>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <h3 class="text-center">Temperature Chart 2</h3>
-        <div class="chart-container">
-          <canvas id="chart2"></canvas>
-        </div>
-      </div>
-    </div>
-    <div class="row mt-4">
-      <div class="col-lg-12">
-        <h3 class="text-center">Temperature Chart 3</h3>
-        <div class="chart-container">
-          <canvas id="chart3"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
-<!-- Include Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<!-- Your JavaScript code for creating the charts -->
-<script src="your_script.js"></script>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-lg-6">
+      <br>
+      <br>
+      <br>
+      <h3 class="text-center"></h3>
+
+      <div class="container-fluid bg-dark text-light p-4">
+        <h2  style="color: #8c5fb2; text-decoration: underline;">Information Box:</h2>
+        <p>
+          <strong style="color: #8c5fb2;">Serial Number:</strong> 0003.0001.0001<br>
+          <strong style="color: #8c5fb2;">Date:</strong> {{ currentdate }}<br>
+          <strong style="color: #8c5fb2;">Location:</strong> Tunisia<br>
+          <strong style="color: #8c5fb2;">Status:</strong> Online<br>
+          <!-- Add more product information as needed -->
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <h3 class="text-center">Temperature Chart</h3>
+      <div class="chart-container">
+        <canvas id="chartTemp"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-lg-6">
+      <h3 class="text-center">Humidity Chart</h3>
+      <div class="chart-container">
+        <canvas id="chartHumidity"></canvas>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <h3 class="text-center">Motion Chart</h3>
+      <div class="chart-container">
+        <canvas id="chartMotion"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 
 </html>
